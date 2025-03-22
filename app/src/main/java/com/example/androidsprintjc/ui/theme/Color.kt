@@ -16,7 +16,7 @@ val AccentColor = Color(0xFFE13E3E)
 val AccentBlue = Color(0xFF525DC0)
 val BackgroundColor = Color(0xFFF4F4FF)
 val SurfaceColor = Color(0xFFFFFFFF)
-val SurfaceVariantColor = Color(0xFF303030)
+val SurfaceVariantColorDark = Color(0xFF303030)
 val TextPrimaryColor = Color(0xFF000000)
 val TextSecondaryColor = Color(0xFF666666)
 

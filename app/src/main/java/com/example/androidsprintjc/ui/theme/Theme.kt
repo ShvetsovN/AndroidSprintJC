@@ -34,7 +34,7 @@ private val RecipesAppLightSchemeColor = lightColorScheme(
     onBackground = TextPrimaryColor,
     surface = SurfaceColor,
     onSurface = TextPrimaryColor,
-    surfaceVariant = SurfaceVariantColor,
+    surfaceVariant = SurfaceColor,
     onSurfaceVariant = TextSecondaryColor,
 )
 
@@ -49,7 +49,7 @@ private val RecipesAppDarkSchemeColor = darkColorScheme(
     onBackground = TextPrimaryColorDark,
     surface = SurfaceColorDark,
     onSurface = TextPrimaryColorDark,
-    surfaceVariant = SurfaceColorDark,
+    surfaceVariant = SurfaceVariantColorDark,
     onSurfaceVariant = TextSecondaryColorDark,
 )
 
