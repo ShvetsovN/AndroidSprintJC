@@ -72,7 +72,7 @@ fun AndroidSprintJCTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = recipesAppTypography,
         content = content
     )
 }
