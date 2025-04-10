@@ -6,7 +6,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 
-enum class BottomNavItem(title: String, icon: ImageVector) {
+enum class BottomNavItem(val title: String, val icon: ImageVector) {
     CATEGORIES(title = "Категории", icon = Icons.Filled.Menu),
     RECIPES(title = "Рецепты", icon = Icons.Filled.Search),
     FAVORITES(title = "Избранное", icon = Icons.Filled.Favorite),
