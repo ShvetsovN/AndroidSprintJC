@@ -1,33 +1,40 @@
 package com.example.androidsprintjc
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.androidsprintjc.ui.navigation.BottomNavItem
+import com.example.androidsprintjc.ui.navigation.RecipesBottomNavigation
 import com.example.androidsprintjc.ui.theme.AndroidSprintJCTheme
 
 @Composable
 @Preview(showSystemUi = true)
 fun RecipeApp() {
+    val currentNavItem = remember { mutableStateOf(BottomNavItem.CATEGORIES) }
     AndroidSprintJCTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            containerColor = MaterialTheme.colorScheme.background
+            containerColor = MaterialTheme.colorScheme.background,
+            bottomBar = {
+                RecipesBottomNavigation(
+                    currentNavItem = currentNavItem.value,
+                    onNavItemClick = {
+                        currentNavItem.value = it
+                    })
+            }
         ) { innerPadding ->
             Column(
                 modifier = Modifier
@@ -36,70 +43,37 @@ fun RecipeApp() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = "onBackground Text",
-                    color = MaterialTheme.colorScheme.onBackground
-                )
-                Rainbow()
-            }
+                when (currentNavItem.value) {
+                    BottomNavItem.CATEGORIES -> {
+                        TestScreen(title = BottomNavItem.CATEGORIES.title, color = Color.Red)
+                    }
 
+                    BottomNavItem.RECIPES -> {
+                        TestScreen(title = BottomNavItem.RECIPES.title, color = Color.Green)
+                    }
+
+                    BottomNavItem.FAVORITES -> {
+                        TestScreen(title = BottomNavItem.FAVORITES.title, color = Color.Blue)
+                    }
+                }
+            }
         }
     }
 }
 
 @Composable
-@Preview
-fun Rainbow() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        CustomButton(
-            buttonColors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary),
-            "Primary Text",
-            MaterialTheme.colorScheme.onPrimary
-        )
-        CustomButton(
-            buttonColors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.error),
-            "Error Text",
-            MaterialTheme.colorScheme.onError
-        )
-        CustomButton(
-            buttonColors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.tertiary),
-            "Tertiary Text",
-            MaterialTheme.colorScheme.onTertiary
-        )
-        CustomButton(
-            buttonColors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.surface),
-            "Surface Text",
-            MaterialTheme.colorScheme.onSurface
-        )
-        CustomButton(
-            buttonColors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.surfaceContainer),
-            "SurfaceVariable Text",
-            MaterialTheme.colorScheme.onSurface
-        )
-    }
-}
-
-@Composable
-fun CustomButton(
-    buttonColors: ButtonColors,
+fun TestScreen(
     title: String,
-    textColor: Color
-){
-    Button(
-        onClick = {},
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
-        colors = buttonColors
+    color: Color
+) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
         Text(
             text = title,
-            color = textColor
+            fontSize = 24.sp,
+            color = color
         )
     }
-    Spacer(modifier = Modifier.height(8.dp))
 }
